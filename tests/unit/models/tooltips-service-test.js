@@ -1,12 +1,12 @@
 import { moduleForModel, test } from 'ember-qunit';
+import TooltipsService from 'ember-bootstrap/models/tooltips-service'
 
 module('tooltips-service', 'Unit | Model | tooltips service', {
-  // Specify the other units that are required for this test.
-  needs: []
+  unit: true
 });
 
 test('it exists', function(assert) {
-  var model = this.subject();
+  var model = TooltipsService.create();
   // var store = this.store();
   assert.ok(!!model);
 });
@@ -14,7 +14,7 @@ test('it exists', function(assert) {
 test('addTooltip adds a tooltip to the tooltips collection', function(assert) {
   assert.expect(3);
 
-  var model = this.subject();
+  var model = TooltipsService.create();
   assert.equal(model.get('tooltips').length, 0);
 
   model.addTooltip({ elementId: 'ember-view-01',  title: 'This is a Test'});
@@ -29,7 +29,7 @@ test('addTooltip adds a tooltip to the tooltips collection', function(assert) {
 test('removeTooltip removes a tooltip from the tooltips collection', function(assert) {
   assert.expect(3);
 
-  var model = this.subject();
+  var model = TooltipsService.create();
   model.set('tooltips', Ember.A([
     { elementId: 'ember-view-01',  title: 'This is a Test'},
     { elementId: 'ember-view-02',  title: 'This is another Test'},
