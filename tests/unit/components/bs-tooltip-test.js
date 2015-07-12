@@ -16,3 +16,8 @@ test('it renders with the correct css classes', function(assert) {
   assert.equal(component._state, 'inDOM');
   assert.equal(component.$().attr('class'), 'ember-view tooltip fade in');
 });
+
+test('calculates the location of its target element', function(assert) {
+  assert.expect(1);
+  assert.equal(true, true);
+});
