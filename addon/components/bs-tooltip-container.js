@@ -1,22 +1,27 @@
 import Ember from 'ember';
 import layout from '../templates/components/bs-tooltip-container';
-let computed = Ember.computed;
 
 export default Ember.Component.extend({
   layout: layout,
-  tooltipsHash: {},
-  tooltips: computed('tooltipsHash', function() {
-    let tooltipsHash = this.get('tooltipsHash');
-    return Ember.A(Ember.keys(tooltipsHash).map((key) => { return tooltipsHash[key]; }));
-  }),
+  tooltips: Ember.A([]),
 
   addTooltip: function(data) {
-    let container = {};
-    container[data.elementId] = data;
-    this.set('tooltipsHash', Ember.merge(this.get('tooltipsHash'), container));
+    this.get('tooltips').pushObject(data);
   },
 
   removeTooltip: function(elementId) {
-    delete this.get('tooltipsHash')[elementId];
+    let tooltips = this.get('tooltips');
+    let index = -1;
+
+    for (let i = 0; i < tooltips.length; i++) {
+      if (tooltips[i].elementId === elementId) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index !== -1) {
+      this.get('tooltips').removeAt(index, 1);
+    }
   }
 });
